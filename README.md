@@ -7,7 +7,7 @@ This project aims to send sensor values over the mesh network to a Wisblock Core
 ## Content
 
 - [Hardware](#hardware)
-- [Documentation](#documentation)
+- [Meshtastic](#meshtastic)
 - [Data Types](#data-types)
 
 
@@ -144,7 +144,4 @@ Meshtastic is an open-source project that enables a decentralized mesh network u
 ### Useful Links
 - [Official Website](https://meshtastic.org/)
 - [GitHub Repository](https://github.com/meshtastic/)
-- [Community Forum](https://meshtastic.discourse.group/)
 
-### Conclusion
-Meshtastic is a powerful and cost-effective solution for wireless communication in remote areas. With its open-source software, long-range capability, and decentralized mesh networking, it is an ideal tool for emergency communication, outdoor adventures, and community networks.
