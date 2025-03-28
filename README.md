@@ -68,7 +68,7 @@ Meshtastic is an open-source project that enables a decentralized mesh network u
 - **Share location data.**
 - **Track movements within the network.**
 
-### 📡 Device Pairing & Connectivity
+### Device Pairing & Connectivity
 - **Radios can be paired with a single phone at a time.**
 - **Each device is capable of connecting to only one user at a time.**
 - **Supports multiple communication methods:**
