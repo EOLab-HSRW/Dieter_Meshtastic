@@ -87,9 +87,10 @@ Initialize the RAK11300 gateway using AT commands:
    - End Device ID: Should be meaningful
 
 8. Now use the AT commands for the RAK11300, accessible via the serial monitor in the Arduino IDE.
-9. Set the parameters and send a join command to connect to the network via the defined gateway.
-10. If the response from the serial monitor is positive, the connection status should be visible on the website.
-11. Test sending example data via the serial monitor.
+Note: The available Commands can be found here : [AT Commands](https://docs.rakwireless.com/product-categories/wisduo/rak11300-module/at-command-manual/#atr)
+10. Set the parameters and send a join command to connect to the network via the defined gateway.
+11. If the response from the serial monitor is positive, the connection status should be visible on the website.
+12. Test sending example data via the serial monitor.
 
 ---
 
