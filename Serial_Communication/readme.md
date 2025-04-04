@@ -56,7 +56,31 @@ Forwarding data received over serial from RAK11200 to the Meshtastic network on 
 
 ---
 
-## Initialization of the Gateway via AT Commands RAK11300
+
+## Connection to the Gateway RAK11200 + RAK 13300
+
+1. Flash the RAK11200 with the firmware from the Meshtastic flasher website.
+2. Configure the RAK11200 via BLE first for MQTT, and then for WiFi. Otherwise, you risk losing your BLE connection and will need to use the web client hosted on the RAK device.
+3. Ensure all nodes are configured with the correct frequency. The first node should enable serial communication via RX/TX.
+4. Configure the RAK11200 endpoint to connect to the MQTT broker on the Meshtastic public network via WiFi.
+5. If needed, obtain the IP address from the Arduino serial output (e.g., 192.168.2.174) and access it via a web browser.
+6. Configure the endpoint channel and enable forwarding to and from MQTT.
+7. Test by sending a message and checking the output.
+
+---
+
+## Combination of the Components
+
+This section consists of three parts:
+
+1. Gathering the sensor data.
+2. Sending data through serial communication.
+3. Forwarding data to the mesh network.
+4. Forwarding data from the mesh network to the MQTT broker.
+
+## Alternative Way of Connection via LoRaWAN Gateway
+
+### Initialization of the Gateway via AT Commands RAK11300
 
 Initialize the RAK11300 gateway using AT commands:
 
@@ -92,29 +116,6 @@ Initialize the RAK11300 gateway using AT commands:
 12. Test sending example data via the serial monitor.
 
 ---
-
-## Connection to the Gateway RAK11200 + RAK 13300
-
-1. Flash the RAK11200 with the firmware from the Meshtastic flasher website.
-2. Configure the RAK11200 via BLE first for MQTT, and then for WiFi. Otherwise, you risk losing your BLE connection and will need to use the web client hosted on the RAK device.
-3. Ensure all nodes are configured with the correct frequency. The first node should enable serial communication via RX/TX.
-4. Configure the RAK11200 endpoint to connect to the MQTT broker on the Meshtastic public network via WiFi.
-5. If needed, obtain the IP address from the Arduino serial output (e.g., 192.168.2.174) and access it via a web browser.
-6. Configure the endpoint channel and enable forwarding to and from MQTT.
-7. Test by sending a message and checking the output.
-
----
-
-## Combination of the Components
-
-This section consists of three parts:
-
-1. Gathering the sensor data.
-2. Sending data through serial communication.
-3. Forwarding data to the mesh network.
-4. Forwarding data from the mesh network to the MQTT broker.
-
-
 
 
 ### Links
