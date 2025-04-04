@@ -57,15 +57,19 @@ Forwarding data received over serial from RAK11200 to the Meshtastic network on 
 ---
 
 
-## Connection to the Gateway RAK11200 + RAK 13300
+## Connection to the Gateway RAK11200 + RAK13300
 
 1. Flash the RAK11200 with the firmware from the Meshtastic flasher website.
-2. Configure the RAK11200 via BLE first for MQTT, and then for WiFi. Otherwise, you risk losing your BLE connection and will need to use the web client hosted on the RAK device.
+2. Configure the RAK11200 via BLE initially for MQTT, and then switch to WiFi. This prevents losing BLE connection, requiring use of the web client on the RAK device.
 3. Ensure all nodes are configured with the correct frequency. The first node should enable serial communication via RX/TX.
 4. Configure the RAK11200 endpoint to connect to the MQTT broker on the Meshtastic public network via WiFi.
-5. If needed, obtain the IP address from the Arduino serial output (e.g., 192.168.2.174) and access it via a web browser.
-6. Configure the endpoint channel and enable forwarding to and from MQTT.
-7. Test by sending a message and checking the output.
+5. Obtain the IP address from the Arduino serial output (e.g., 192.168.2.174) if necessary, and access it through a web browser.
+6. Set up the endpoint channel and enable bidirectional forwarding with MQTT.
+7. Test by sending a message and verifying the output.
+8. Assign a proper name to the broker topic for testing purposes.
+9. Connect to the public broker via an MQTT Client Desktop App.
+10. Access necessary configuration information from the web client hosted by the RAK11200.
+11. Once connected to the broker, subscribe to the topic: `msh/EU_868/TestingTesting/#`.
 
 ---
 
