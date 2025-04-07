@@ -33,14 +33,14 @@
 1. Ensure proper soldering of pin headers if necessary to connect RAK11200 and RAK4631 via their GND, RX, and TX pins. For RAK11200, enable sketch uploading via reset by connecting BOOT0 to GND.
 2. Keep in mind when coding:
 
-**Note:** Use `Serial` for monitoring via computer and `Serial1` for RX/TX communication between devices.
-   Forwarding serial data from RAK11200 to Meshtastic network on RAK4631 can be achieved by:
-
 1. BLE connection to the node receiving serial data.
 2. Navigate to **Device Settings** > **Serial** in **Module Settings**.
 3. Enable and set **RX** to `14` and **TX** to `13`.
 4. Set baud rate to `115200`.
 5. Save changes for automatic reconnection.
+
+**Note:** Use `Serial` for monitoring via computer and `Serial1` for RX/TX communication between devices.
+   Forwarding serial data from RAK11200 to Meshtastic network on RAK4631 can be achieved by:
 
 ---
 
@@ -49,7 +49,7 @@
 1. Flash Meshtastic firmware on RAK4631 using [Meshtastic Flasher](https://flasher.meshtastic.org/).
 2. Configure necessary settings like channel encryption. Important: Enable serial on the first node with RX/TX connected to RAK11200.
 3. Enable MQTT and configure on each node. Defaults are acceptable; disable encryption and enable JSON.
-4. On the last node (13300 gateway), enable WiFi, noting BLE disconnection requiring firmware re-upload via reset double-click.
+4. On the last Meshnode (RAK11200 + RAK13300), enable WiFi. (steps further listed below in the section "Connection to the Gateway RAK11200 + RAK13300")
 5. Verify operation with MQTT client desktop app.
 6. Utilize web client on RAK11200 combined with 13300. (Select web UI option during firmware generation.)
 
