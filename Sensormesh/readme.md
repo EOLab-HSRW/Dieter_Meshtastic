@@ -2,15 +2,22 @@
 
 ## Content
 
+- [Main Tasks](#main-tasks)
 - [Sensor Data Gathering RAK11200](#sensor-data-gathering-rak11200)
 - [Serial Connection from RAK11200 to RAK4631](#serial-connection-from-rak11200-to-rak4631)
 - [Configuration of Meshtastic on RAK4631](#configuration-of-meshtastic-on-rak4631)
 - [Forwarding Data From Serial](#forwarding-data-from-serial)
 - [Initialization of the Gateway via AT Commands RAK11300](#initialization-of-the-gateway-via-at-commands-rak11300)
 - [Connection to the Gateway RAK13300](#connection-to-the-gateway-rak13300)
-- [Combination of the Components](#combination-of-the-components)
 
 ---
+
+## Main Tasks
+
+1. Gathering the sensor data.
+2. Sending data through serial communication.
+3. Forwarding data to the mesh network.
+4. Forwarding data from the mesh network to the MQTT broker.
 
 ## Sensor Data Gathering RAK11200
 
@@ -72,15 +79,6 @@ Forwarding data received over serial from RAK11200 to the Meshtastic network on 
 11. Once connected to the broker, subscribe to the topic: `msh/EU_868/TestingTesting/#`.
 
 ---
-
-## Combination of the Components
-
-This section consists of three parts:
-
-1. Gathering the sensor data.
-2. Sending data through serial communication.
-3. Forwarding data to the mesh network.
-4. Forwarding data from the mesh network to the MQTT broker.
 
 ## Alternative Way of Connection via LoRaWAN Gateway
 
