@@ -1,82 +1,38 @@
-# Software Documentation
-
-## Content
-
-- [Main Tasks](#main-tasks)
-- [Sensor Data Gathering RAK11200](#sensor-data-gathering-rak11200)
-- [Serial Connection from RAK11200 to RAK4631](#serial-connection-from-rak11200-to-rak4631)
-- [Configuration of Meshtastic on RAK4631](#configuration-of-meshtastic-on-rak4631)
-- [Forwarding Data From Serial](#forwarding-data-from-serial)
-- [Initialization of the Gateway via AT Commands RAK11300](#initialization-of-the-gateway-via-at-commands-rak11300)
-- [Connection to the Gateway RAK13300](#connection-to-the-gateway-rak13300)
-
----
-
-## Main Tasks
-
-1. Gathering the sensor data.
-2. Sending data through serial communication.
-3. Forwarding data to the mesh network.
-4. Forwarding data from the mesh network to the MQTT broker.
-
-## Sensor Data Gathering RAK11200
-
-To gather sensor data using the RAK11200 with the WisBlock Environment Sensor, follow these steps:
-
-1. Ensure the WisBlock Environment Sensor is properly connected to the RAK11200.
-2. Use the appropriate libraries and example sketches on PlatformIO to read sensor values.
-3. Implement the necessary code to transmit sensor data over the LoRa mesh network.
-
 ---
 
 ## Serial Connection from RAK11200 to RAK4631
 
-Establishing a serial connection from the RAK11200 to the RAK4631 involves:
+Establishing UART communication between RAK11200 and RAK4631:
 
-1. Configuring the UART communication parameters on both devices.
-2. Testing the serial communication to ensure data transmission between RAK11200 and RAK4631 is successful.
-
-**Note:** The commonly used way to establish UART communication is to use `Serial` for the connection to the computer monitor and `Serial1` for communication between the two devices via RX/TX.
+1. Ensure pinheaders are soldered if necessary for connecting RAK11200 and RAK4631.
+2. Use `Serial` for monitor connection and `Serial1` for device-to-device communication via RX/TX.
+3. Configure Meshtastic on RAK4631 to receive and process data forwarded from RAK11200.
 
 ---
 
 ## Configuration of Meshtastic on RAK4631
 
-Configure Meshtastic on the RAK4631 by:
+Setting up Meshtastic on RAK4631 involves the following steps:
 
-1. Flashing the Meshtastic firmware onto the RAK4631 using the following website: [Meshtastic Flasher](https://flasher.meshtastic.org/).
-2. Setting up the mesh network parameters such as node IDs and communication channels.
+1. Flash the Meshtastic firmware onto RAK4631 using the [Meshtastic Flasher](https://flasher.meshtastic.org/).
+2. Configure channels, encryption, and enable serial communication on nodes.
+3. Enable MQTT with default settings and JSON format across all nodes.
+4. Enable Wi-Fi on RAK13300 for MQTT connection, noting the loss of BLE capability afterward.
+5. Verify connectivity and data transmission using MQTT Client Desktop App.
 
-**Important Note:** The internal pins for serial communication are listed in the datasheet as UART0 (pins 9 and 10) and UART1 (pins 33 and 34), but the Meshtastic app uses UART1 (pins 14 and 13).
-
----
-
-## Forwarding Data From Serial
-
-Forwarding data received over serial from RAK11200 to the Meshtastic network on RAK4631 can be done by following these steps:
-
-1. Connect via BLE to the node that will receive the data over serial.
-2. Go to **Device Settings** and select **Serial** from the **Module Settings**.
-3. Enable it and set **RX** to `14` and **TX** to `13`.
-4. Set the baud rate to `115200`.
-5. Save the changes (the device will automatically reconnect to apply the changes).
+**Note:** Use UART1 (pins 14 and 13) for serial communication as per Meshtastic application requirements.
 
 ---
-
 
 ## Connection to the Gateway RAK11200 + RAK13300
 
-1. Flash the RAK11200 with the firmware from the Meshtastic flasher website.
-2. Configure the RAK11200 via BLE initially for MQTT, and then switch to WiFi. This prevents losing BLE connection, requiring use of the web client on the RAK device.
-3. Ensure all nodes are configured with the correct frequency. The first node should enable serial communication via RX/TX.
-4. Configure the RAK11200 endpoint to connect to the MQTT broker on the Meshtastic public network via WiFi.
-5. Obtain the IP address from the Arduino serial output (e.g., 192.168.2.174) if necessary, and access it through a web browser.
-6. Set up the endpoint channel and enable bidirectional forwarding with MQTT.
-7. Test by sending a message and verifying the output.
-8. Assign a proper name to the broker topic for testing purposes.
-9. Connect to the public broker via an MQTT Client Desktop App.
-10. Access necessary configuration information from the web client hosted by the RAK11200.
-11. Once connected to the broker, subscribe to the topic: `msh/EU_868/TestingTesting/#`.
+Connecting RAK11200 and RAK13300 for data forwarding:
+
+1. Flash RAK11200 with Meshtastic firmware.
+2. Initially configure RAK11200 via BLE for MQTT, then switch to Wi-Fi.
+3. Configure nodes with correct frequencies and enable serial communication on the first node.
+4. Connect RAK11200 to MQTT broker on Meshtastic public network via Wi-Fi.
+5. Test MQTT connection and verify data transmission to the specified topic.
 
 ---
 
@@ -84,41 +40,15 @@ Forwarding data received over serial from RAK11200 to the Meshtastic network on 
 
 ### Initialization of the Gateway via AT Commands RAK11300
 
-Initialize the RAK11300 gateway using AT commands:
+Initialize RAK11300 LoRaWAN gateway using AT commands:
 
-1. Connect to the RAK11300 via serial communication.
-2. To test the connection, use the basic command `AT`.
-3. If step 2 works properly, configure the connection parameters.
-4. Before configuration, visit the website: [The Things Network](https://eu1.cloud.thethings.network).
-5. If you do not have an account, sign up.
-6. After registration, you will see an empty console where you can add a new application.
-7. Add a new end device with the following settings:
-   - **Input Method:** Manually
-   - **Frequency Plan:** Europe 863-870 MHz (SF9 for RX2 / recommended)
-   - **LoRaWAN Version:** 1.0.2
-   - **Regional Parameters Version:** RP001 Regional Parameters 1.0.2 revision B
-   - There are two common connection methods: OTAA and ABP.
-
-   **For OTAA:**
-   - JoinEUI: `00 00 00 00 00 00 00 00`
-   - DevEUI: Generate for the first time
-   - AppKey: Generate for the first time
-   - End Device ID: Should be meaningful
-
-   **For ABP:**
-   - DevEUI: Generate for the first time
-   - Device Address: Generate for the first time
-   - AppSKey: Generate for the first time
-   - NwkSKey: Generate for the first time
-   - End Device ID: Should be meaningful
-
-8. Now use the [AT Commands](https://docs.rakwireless.com/product-categories/wisduo/rak11300-module/at-command-manual/#atr) for the RAK11300, accessible via the serial monitor in the Arduino IDE.
-10. Set the parameters and send a join command to connect to the network via the defined gateway.
-11. If the response from the serial monitor is positive, the connection status should be visible on the website.
-12. Test sending example data via the serial monitor.
+1. Connect to RAK11300 via serial communication.
+2. Test connection with basic command `AT`.
+3. Configure network parameters (e.g., OTAA or ABP) via serial monitor in Arduino IDE.
+4. Set join parameters and test network connection.
+5. Verify connectivity and data transmission using the designated network console.
 
 ---
-
 
 ### Links
 
