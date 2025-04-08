@@ -141,6 +141,43 @@ Meshtastic is an open-source project that enables a decentralized mesh network u
 | 4      | 1    | MQTT Transmission (Packet coming from MQTT) |
 | 5      | 3    | Hop Start (Original hop limit) |
 
+### Power Consumption Simulation
+
+#### Code Execution Mode
+
+![Code Execution Mode Test Results](./Assets/power_consumption_active.png)
+
+**Results:**
+
+Average power consumption during active Mode was 125.90 mA over a duration of 0.4832 seconds.
+The battery life calculation considered the following parameters:
+
+- Code execution duration: 0.4832 seconds
+- Sleep time: 1200 seconds
+- Consumption during code execution: 125.90 mA
+- Consumption in sleep mode: 12.85 mA
+- Battery capacity: 4400 mAh with 20% discharge safety margin.
+
+#### Passive Mode
+
+![Passive Mode Test Results](./Assets/power_consumption_sleep.png)
+
+**Results:**
+
+Average power consumption during passive Mode was 12.85 mA over a duration of 7.814 seconds. 
+The battery life calculation considered the following parameters:
+
+- Code execution duration: 0.4832 seconds
+- Sleep time: 1200 seconds
+- Consumption during code execution: 125.90 mA
+- Consumption in sleep mode: 12.85 mA
+- Battery capacity: 4400 mAh with 20% discharge safety margin.
+
+Estimated battery life: approximately 272 hours, equivalent to around 11 days and 8 hours. 
+Estimated average power consumption per hour: 12.9 mAh.
+
+
+
 ### Useful Links
 - [Official Website](https://meshtastic.org/)
 - [GitHub Repository](https://github.com/meshtastic/)
