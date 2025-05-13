@@ -8,6 +8,7 @@
 Adafruit_BME680 bme;
 
 
+
 bool bme680_init() {
   Wire.begin();
   if (!bme.begin(0x76)) {
@@ -29,7 +30,8 @@ String message = "";
 
 void setup() {
   // UART Connection to RAK 4631
-  Serial.begin(112500);
+  Serial.begin(115200);
+  Serial1.begin(9600);
 }
 
 void loop() {
@@ -48,7 +50,8 @@ void loop() {
 
     }
     */
-    Serial.println("28.66°C, 3556.66, 30.01%, 15200.44");
+    Serial1.println("28.66°C, 3556.66, 30.01%, 15200.44");
+    delay(5000);
     
 
 }
