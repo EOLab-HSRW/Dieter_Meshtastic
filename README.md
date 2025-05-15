@@ -9,6 +9,7 @@ This project aims to send sensor values over the mesh network to a Wisblock Core
 - [Hardware](#hardware)
 - [Meshtastic](#meshtastic)
 - [Data Types](#data-types)
+- [Test Results](#test-results)
 
 
 ## Hardware
@@ -176,6 +177,80 @@ The battery life calculation considered the following parameters:
 Estimated battery life: approximately 272 hours, equivalent to around 11 days and 8 hours. 
 Estimated average power consumption per hour: 12.9 mAh.
 
+### Test Report 
+**Date:** Wednesday, May 14th, 2025  
+**Location:** Stollen, Bad Ems
+
+#### Overview
+
+ The tests focused on:
+
+- **Signal reliability and failover**
+- **Penetration and underground communication**
+- **Mesh forwarding behavior**
+- **Maximum distance between nodes**
+
+---
+
+#### Test Setup
+
+All nodes were identical, based on the **RAK4631 module (model 4003)** operating at **868 MHz**.  
+Transmission power was configured to **+20 dBm**, using Meshtastic’s default LoRa parameters.
+
+### Node Roles and Locations
+
+- **Base Node**  
+  - Connected via serial to a data logger  
+  - Located next to the antenna at the **Weidtmann shaft**
+
+- **Second Node**  
+  - Positioned at the **entrance of Shaft 2**
+
+- **Third Node (Test Node)**  
+  - Used for different test scenarios:
+    1. Inside Shaft 2, opposite the bridge (deep tunnel area)
+    2. Entrance to the tunnel on **Von Ems Street**, directly opposite the Weidtmann shaft
+
+---
+
+#### Test Results
+
+##### 1. Base Test – Without Repeater
+
+- **Goal:** Check if direct communication is possible over full range
+- **Distance:** ~575 meters (mostly line-of-sight)
+- **RSSI:** ~**–126 dBm**  
+- **SNR:** Very low or negative
+
+> 🔴 **Result:** Unstable communication. Rare messages received, possibly due to signal artifacts. Not reliable for data transmission.
+
+---
+
+##### 2. Mesh Forwarding Test – With Repeater Node
+
+- **Repeater Node Position:** Tunnel midpoint near Shaft 2 (~361 m from base)
+- **Tunnel depth at repeater location:** ~15–18 meters
+- **RSSI:** **–85 to –96 dBm**  
+- **SNR:** **+2 to +5 dB**
+
+> 🟢 **Result:** Reliable message forwarding with low latency. High communication stability with acceptable signal quality.
+
+---
+
+### Summary
+
+| Test Case               | Distance (m) | Repeater | RSSI (dBm)   | Result                          |
+|-------------------------|--------------|----------|--------------|---------------------------------|
+| Base to Tunnel Entrance | ~575         | ❌        | ~–126        | Unstable, likely false positive |
+| With Repeater Node      | ~575 total   | ✅        | –85 to –96   | Stable, reliable communication  |
+
+---
+
+### Conclusion
+
+- Direct LoRa communication over 575 m in this terrain is **unreliable without relaying**.
+- A **single strategically placed node** significantly improves performance and reliability.
+- Meshtastic is suitable for underground monitoring or sensor mesh networks with proper placement.
 
 
 ### Useful Links
