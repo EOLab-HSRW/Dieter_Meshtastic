@@ -1,0 +1,57 @@
+Testergebnisse Meshtastic
+Datum: Mittwoch, 14.05.2025
+
+Heute wurden umfassende Tests zur LoRa-Radio-Kommunikation mittels Meshtastic durchgeführt. Ziel war es, die Ausfallsicherheit, Signal-Durchdringung, Reichweite (Distanz) und die Effizienz des Mesh-Forwardings zu evaluieren.
+
+Versuchsaufbau
+Für alle Tests kamen identische Standard-Nodes mit dem RAK4631-Modul (Modell 4003) zum Einsatz. Diese unterstützten LoRa-Kommunikation im Frequenzbereich 868 MHz.
+Die Kommunikation erfolgte mit einer festen Sendeleistung von +20 dBm und standardmäßiger Bandbreite und Spreading-Faktor (SF), wie von Meshtastic vorkonfiguriert.
+
+Standorte der Nodes:
+Basis-Node:
+Befand sich am Weidtmannsschacht, direkt neben der außen montierten Antenne. Diese Node war über ein serielles Kabel mit dem Data Logger verbunden.
+
+Zweite Node:
+Stand fest vor dem Eingang von Schacht 2.
+
+Dritte Node (Testposition):
+Positionierte sich je nach Testfall an zwei unterschiedlichen Orten:
+
+Im Schacht 2, auf der gegenüberliegenden Seite der Brücke im Tunnel (dort, wo LoRaWAN keinen Empfang mehr hatte).
+
+Am Eingang des Stollens an der Straße „Von Ems“, auf der gegenüberliegenden Seite des Weidtmannschachts.
+
+Messergebnisse & Beobachtungen
+1. Basis-Test ohne Zwischenknoten:
+Getestet wurde, ob eine direkte Kommunikation zwischen dem Weidtmannschacht und dem Node am Eingang des Stollens (Straße „Von Ems“) möglich ist.
+
+Distanz: ca. 575 Meter (freie Sichtlinie, minimaler Bewuchs).
+
+Ergebnis:
+Die Kommunikation war instabil, aber gelegentlich möglich.
+
+RSSI (Empfangsstärke): etwa –126 dBm
+
+SNR (Signal-Rausch-Verhältnis): sehr niedrig oder negativ
+→ Dies deutetete auf extrem schlechte Verbindungsqualität hin.
+Eine stabile Datenübertragung ist unter solchen Bedingungen nicht zuverlässig möglich. Das Empfangen von Nachrichten kann als falsch-positiv gewertet werden.
+
+2. Test mit Zwischenknoten (Mesh-Forwarding):
+Eine dritte Node wurde als Repeater zwischen dem Weidtmannschacht und dem Eingang zur Straße „Von Ems“ positioniert (in etwa mittig des Tunnels, Nähe Schacht 2).
+
+Position: ca. 361 Meter vom Weidtmannschacht entfernt.
+
+Ergebnisse:
+
+RSSI: zwischen –85 dBm und –96 dBm
+
+SNR: verbessert auf ca. +2 bis +5 dB
+
+Alle Nachrichten wurden zuverlässig weitergeleitet, mit sehr niedriger Latenz.
+Die Mesh-Funktion von Meshtastic bewährte sich in dieser Konfiguration.
+
+Fazit:
+Ohne Zwischenknoten war die maximale Reichweite bei dieser Topografie (575 m, teils mit Hindernissen wie Beton und Gestein) nicht ausreichend für zuverlässige Kommunikation. Die Verbindung war extrem schwach.
+Mit einem Zwischenknoten konnte sowohl die Signalqualität verbessert als auch die Stabilität des Netzwerks drastisch erhöht werden.
+Meshtastic zeigt in dieser Umgebung ein gutes Potenzial für die Weiterleitung von Sensordaten oder kurzen Textnachrichten über mehrere Stationen hinweg.
+Für den produktiven Einsatz in Tunnels oder unterirdischen Stollen ist mindestens ein strategisch platzierter Repeater-Node essenziell.
