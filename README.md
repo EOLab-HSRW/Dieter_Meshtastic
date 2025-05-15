@@ -9,7 +9,7 @@ This project aims to send sensor values over the mesh network to a Wisblock Core
 - [Hardware](#hardware)
 - [Meshtastic](#meshtastic)
 - [Data Types](#data-types)
-- [Test Results](#test-results)
+- [Test Report](#test-report)
 
 
 ## Hardware
