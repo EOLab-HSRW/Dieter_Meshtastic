@@ -177,6 +177,8 @@ The battery life calculation considered the following parameters:
 Estimated battery life: approximately 272 hours, equivalent to around 11 days and 8 hours. 
 Estimated average power consumption per hour: 12.9 mAh.
 
+---
+
 ### Test Report 
 **Date:** Wednesday, May 14th, 2025  
 **Location:** Stollen, Bad Ems
