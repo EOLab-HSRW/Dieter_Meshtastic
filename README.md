@@ -10,6 +10,7 @@ This project aims to send sensor values over the mesh network to a Wisblock Core
 - [Meshtastic](#meshtastic)
 - [Data Types](#data-types)
 - [Test Report](#test-report)
+- [Calculation of Battery Life Time](#calculation-of-needed-battery-capacity)
 
 
 ## Hardware
@@ -257,6 +258,71 @@ Transmission power was configured to **+20 dBm**, using Meshtastic’s default L
 - Direct LoRa communication over 575 m in this terrain is **unreliable without relaying**.
 - A **single strategically placed node** significantly improves performance and reliability.
 - Meshtastic is suitable for underground monitoring or sensor mesh networks with proper placement.
+
+
+### Calculation of needed Battery Capacity
+
+- **Node Voltage**: 3.3V  
+- **Power Source**: 12V Battery  
+- **Voltage Regulation**: Step-Down Buck Converter (assumed 85% efficiency)  
+- **Device Mode**: Periodic wake-up + long sleep  
+
+#### Profile
+
+Active Current: I_active = 125.90 mA
+Active Duration: t_active = 0.4832 seconds
+Sleep Current: I_sleep = 12.85 mA
+Sleep Duration: t_sleep = 1200 seconds (20 minutes)
+Cycle Time: T_cycle = t_active + t_sleep
+Battery Capacity: 4400 mAh (with 20% safety margin → usable = 3520 mAh)
+
+
+
+#### Energy Used Per Cycle (in mAs)
+
+E_active = I_active × t_active = 125.90 × 0.4832 = 60.85 mAs
+E_sleep = I_sleep × t_sleep = 12.85 × 1200 = 15420.00 mAs
+E_total = E_active + E_sleep = 15480.85 mAs
+
+#### Average Current at 3.3V
+
+I_avg_3.3V = E_total / T_cycle = 15480.85 / 1200.4832 ≈ 12.9 mA
+
+#### Power Consumption at 3.3V
+
+P_3.3V = V × I = 3.3 × 0.0129 = 0.0426 W
+
+
+#### Current Draw from 12V Battery
+
+Assuming 85% efficient step-down conversion:
+
+I_12V = P_3.3V / (12V × 0.85) = 0.0426 / 10.2 ≈ 4.18 mA
+
+
+
+####  Runtime with Given Battery (3520 mAh usable)
+
+T_runtime = 3520 mAh / 4.18 mA ≈ 841 hours ≈ 35 days
+
+
+#### Required Capacity for 90-Day Operation
+
+#### Target Duration
+
+T_target = 90 days = 2160 hours
+
+#### Required Capacity (without margin)
+
+C_raw = I_12V × T_target = 4.18 mA × 2160 h = 9028.8 mAh
+
+
+#### Final Capacity with 20% Safety Margin
+
+C_final = C_raw / 0.8 = 9028.8 / 0.8 ≈ 11286 mAh
+
+
+**A 12V battery with at least 11.3Ah capacity** is needed to support the node for 90 days.
 
 
 ### Useful Links
