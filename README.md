@@ -183,6 +183,8 @@ Estimated average power consumption per hour: 12.9 mAh.
 **Date:** Wednesday, May 14th, 2025  
 **Location:** Stollen, Bad Ems
 
+![Map](./Assets/map.png)
+
 #### Overview
 
  The tests focused on:
@@ -200,6 +202,8 @@ All nodes were identical, based on the **RAK4631 module (model 4003)** operating
 Transmission power was configured to **+20 dBm**, using Meshtastic’s default LoRa parameters.
 
 ### Node Roles and Locations
+
+![Measured Map](./Assets/mapMeasure.png)
 
 - **Base Node**  
   - Connected via serial to a data logger  
