@@ -286,40 +286,40 @@ $$E_total = E_active + E_sleep = 15480.85 mAs$$
 
 #### Average Current at 3.3V
 
-I_avg_3.3V = E_total / T_cycle = 15480.85 / 1200.4832 ≈ 12.9 mA
+$$I_avg_3.3V = E_total / T_cycle = 15480.85 / 1200.4832 ≈ 12.9 mA$$
 
 #### Power Consumption at 3.3V
 
-P_3.3V = V × I = 3.3 × 0.0129 = 0.0426 W
+$$P_3.3V = V × I = 3.3 × 0.0129 = 0.0426 W$$
 
 
 #### Current Draw from 12V Battery
 
 Assuming 85% efficient step-down conversion:
 
-I_12V = P_3.3V / (12V × 0.85) = 0.0426 / 10.2 ≈ 4.18 mA
+$$I_12V = P_3.3V / (12V × 0.85) = 0.0426 / 10.2 ≈ 4.18 mA$$
 
 
 
 ####  Runtime with Given Battery (3520 mAh usable)
 
-T_runtime = 3520 mAh / 4.18 mA ≈ 841 hours ≈ 35 days
+$$T_runtime = 3520 mAh / 4.18 mA ≈ 841 hours ≈ 35 days$$
 
 
 #### Required Capacity for 90-Day Operation
 
 #### Target Duration
 
-T_target = 90 days = 2160 hours
+$$T_target = 90 days = 2160 hours$$
 
 #### Required Capacity (without margin)
 
-C_raw = I_12V × T_target = 4.18 mA × 2160 h = 9028.8 mAh
+$$C_raw = I_12V × T_target = 4.18 mA × 2160 h = 9028.8 mAh$$
 
 
 #### Final Capacity with 20% Safety Margin
 
-C_final = C_raw / 0.8 = 9028.8 / 0.8 ≈ 11286 mAh
+$$C_final = C_raw / 0.8 = 9028.8 / 0.8 ≈ 11286 mAh$$
 
 
 **A 12V battery with at least 11.3Ah capacity** is needed to support the node for 90 days.
