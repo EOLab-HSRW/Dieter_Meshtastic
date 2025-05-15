@@ -280,9 +280,9 @@ Battery Capacity: 4400 mAh (with 20% safety margin → usable = 3520 mAh)
 
 #### Energy Used Per Cycle (in mAs)
 
-E_active = I_active × t_active = 125.90 × 0.4832 = 60.85 mAs
-E_sleep = I_sleep × t_sleep = 12.85 × 1200 = 15420.00 mAs
-E_total = E_active + E_sleep = 15480.85 mAs
+$$E_active = I_active × t_active = 125.90 × 0.4832 = 60.85 mAs$$
+$$E_sleep = I_sleep × t_sleep = 12.85 × 1200 = 15420.00 mAs$$
+$$E_total = E_active + E_sleep = 15480.85 mAs$$
 
 #### Average Current at 3.3V
 
