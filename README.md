@@ -259,70 +259,30 @@ Transmission power was configured to **+20 dBm**, using Meshtastic’s default L
 - A **single strategically placed node** significantly improves performance and reliability.
 - Meshtastic is suitable for underground monitoring or sensor mesh networks with proper placement.
 
+### Battery Lifetime Calculation
 
-### Calculation of needed Battery Capacity
+- **Consumption per Cycle:** 4.3 mA (per 20 minutes)  
+- **Consumption per Hour:**  
+  4.3 mA * 3 = 12.9 mA  
+- **Consumption in Watt-hours:**  
+  12.9 mA * 4 V = 51.6 mWh  
 
-- **Node Voltage**: 3.3V  
-- **Power Source**: 12V Battery  
-- **Voltage Regulation**: Step-Down Buck Converter (assumed 85% efficiency)  
-- **Device Mode**: Periodic wake-up + long sleep  
+- **Current (mA) check:**  
+  51.6 mWh / 12 V = 4.3 mA  
 
-#### Profile
+- **Total capacity needed:**  
+  capacity = 24 hours * 90 days = 2160 hours  
+  Total consumption = 2160 * 4.3 mA = 9288 mAh  
 
-Active Current: I_active = 125.90 mA
-Active Duration: t_active = 0.4832 seconds
-Sleep Current: I_sleep = 12.85 mA
-Sleep Duration: t_sleep = 1200 seconds (20 minutes)
-Cycle Time: T_cycle = t_active + t_sleep
-Battery Capacity: 4400 mAh (with 20% safety margin → usable = 3520 mAh)
+- **Including 20% safety margin:**  
+  9288 mAh / 1000 = 9.288 Ah  
+  9.288 Ah / 0.8 = 11.6 Ah  
 
-
-
-#### Energy Used Per Cycle (in mAs)
-
-$$ E (active) = I (active) × t (active) = 125.90 × 0.4832 = 60.85 mAs $$
-$$ E (sleep) = I (sleep) × t (sleep) = 12.85 × 1200 = 15420.00 mAs $$
-$$ E (total) = E (active) + E (sleep) = 15480.85 mAs $$
-
-#### Average Current at 3.3V
-
-$$ I (avg 3.3V) = E (total) / T (cycle) = 15480.85 / 1200.4832 ≈ 12.9 mA $$
-
-#### Power Consumption at 3.3V
-
-$$ P (3.3V) = V × I = 3.3 × 0.0129 = 0.0426 W $$
-
-
-#### Current Draw from 12V Battery
-
-Assuming 85% efficient step-down conversion:
-
-$$ I (12V) = P (3.3V) / (12V × 0.85) = 0.0426 / 10.2 ≈ 4.18 mA $$
+**Result:**  
+To achieve a battery lifetime of 90 days, at least a **12 Ah** battery is needed, ideally rounded up to between **12 Ah and 19 Ah** for safety.
 
 
 
-####  Runtime with Given Battery (3520 mAh usable)
-
-$$ T (runtime) = 3520 mAh / 4.18 mA ≈ 841 hours ≈ 35 days $$
-
-
-#### Required Capacity for 90-Day Operation
-
-#### Target Duration
-
-$$ T (target) = 90 days = 2160 hours $$
-
-#### Required Capacity (without margin)
-
-$$ C (raw) = I (12V) × T (target) = 4.18 mA × 2160 h = 9028.8 mAh $$
-
-
-#### Final Capacity with 20% Safety Margin
-
-$$ C (final) = C (raw) / 0.8 = 9028.8 / 0.8 ≈ 11286 mAh $$
-
-
-**A 12V battery with at least 11.3Ah capacity** is needed to support the node for 90 days.
 
 
 ### Useful Links
